@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Dota 2 Hero Picker</string>
+    <string name="action_settings">Settings</string>
+    <string name="choose_stats">Choose Your Stats</string>
+    <string name="class_label">Class</string>
+
+    <string name="balance_classes">Balance Classes</string>
+    <string name="balance_roles">Balance Roles</string>
+    <string name="have_stuns">Have Stuns</string>
+    <string name="generate">Generate</string>
+
+</resources>
