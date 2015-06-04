@@ -1,9 +1,11 @@
 package com.dreammist.dota2heropicker;
 
+import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.database.sqlite.*;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +14,24 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SQLiteDatabase heroesDB = openOrCreateDatabase("HeroesDB",MODE_PRIVATE,null);
+        heroesDB.execSQL("CREATE TABLE IF NOT EXISTS HeroesTable(hero_name TEXT, class TEXT, role TEXT, attack_type TEXT, has_stun INTEGER, has_disable INTEGER);");
+
+        //                                          hero_name           class   role       attack_type has_stun    has_disable
+        heroesDB.execSQL("INSERT INTO HeroesTable VALUES('Bloodseeker',      'agi', 'ganker',   'melee',    0,          1);");
+        heroesDB.execSQL("INSERT INTO HeroesTable VALUES('Crystal Maiden',   'int', 'support',  'ranged',   0,          1);");
+        heroesDB.execSQL("INSERT INTO HeroesTable VALUES('Skywrath Mage',    'int', 'support',  'ranged',   0,          1);");
+        heroesDB.execSQL("INSERT INTO HeroesTable VALUES('Storm Spirit',     'int', 'support',  'ranged',   0,          1);");
+        heroesDB.execSQL("INSERT INTO HeroesTable VALUES('Sven',             'str', 'support',  'ranged',   0,          1);");
+
+        Cursor resultSet = heroesDB.rawQuery("SELECT * FROM HeroesTable", null);
+        resultSet.moveToFirst();
+        String heroName = resultSet.getString(0);
+        String classType = resultSet.getString(2);
+
+        System.out.println("Hero Name: " + heroName);
+        System.out.println("Class Type: " + classType);
     }
 
 
